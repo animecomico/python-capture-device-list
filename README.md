@@ -16,8 +16,8 @@
 1. Install Python 2/3 64 bits
 2. Install Opencv >3.0
 3. On CMD: pip install --upgrade setuptools --> This upgrade the setupttols
-4. Microsoft Visual C++ 14.2 standalone: Build Tools for Visual Studio 2019 (x86, x64, ARM, ARM64)
-	*This is a standalone version of Visual C++ 14.2 compiler, you don't need to install Visual Studio 2019.
+4. Microsoft Visual C++ 14.2 standalone: Build Tools for Visual Studio 2019 (x86, x64, ARM, ARM64):
+    *This is a standalone version of Visual C++ 14.2 compiler, you don't need to install Visual Studio 2019.
     *Install Microsoft Build Tools for Visual Studio 2019.[2] To Download[4]
     *In Build tools, install C++ build tools and ensure the latest versions of MSVCv142 - VS 2019 C++ x64/x86 build tools and Windows 10 SDK are checked.
 
