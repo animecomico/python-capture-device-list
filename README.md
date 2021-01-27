@@ -6,21 +6,25 @@
 * Python 2.7.9 / Python 3.6.5
 * OpenCV 3.3.0
 
+## Environment Working Now
+* Python > 3.6
+* OpenCV > 3
+* Build Tools for Visual Studio 2019 with Windows 10 SDK
+
 ## Tips Python Compiler Windows
-* Python >=3.5 			  --> Visual C++ >=14.X
+* Python >=3.5                    --> Visual C++ >=14.X
 * Python >=3.3 and <=3.4  --> Visual C++ 10
 * Python >=2.6 and <= 3.2 --> Visual C++ 9
-* More information in [3]
+* More information [here][3]
 
 ## Prepare Environment
 1. Install Python 2/3 64 bits
 2. Install Opencv >3.0
-3. On CMD: pip install --upgrade setuptools --> This upgrade the setupttols
-4. Microsoft Visual C++ 14.2 standalone: Build Tools for Visual Studio 2019 (x86, x64, ARM, ARM64):
-    *This is a standalone version of Visual C++ 14.2 compiler, you don't need to install Visual Studio 2019.
-    *Install Microsoft Build Tools for Visual Studio 2019.[2] To Download[4]
-    *In Build tools, install C++ build tools and ensure the latest versions of MSVCv142 - VS 2019 C++ x64/x86 build tools and Windows 10 SDK are checked.
-
+3. On **CMD**: pip install --upgrade setuptools --> This upgrade the setuptools
+4. Microsoft Visual C++ 14.2 standalone: **Build Tools for Visual Studio 2019 (x86, x64, ARM, ARM64)**:
+ * This is a standalone version of Visual C++ 14.2 compiler, you don't need to install Visual Studio 2019.
+ * Install Microsoft Build Tools for** Visual Studio 2019** [info][2] and Download [here] [4]
+ * In Build tools, **install C++ build tools** and ensure the latest versions of MSVCv142 - VS 2019 C++ x64/x86 build tools and Windows 10 SDK are checked.
 
 ## How to Run 
 1. Configure Visual Studio environment:
