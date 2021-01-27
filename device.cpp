@@ -87,9 +87,31 @@ PyObject* DisplayDeviceInformation(IEnumMoniker *pEnum)
 		if (SUCCEEDED(hr))
 		{
 			// Append a result to Python list
-			char  *pValue = _com_util::ConvertBSTRToString(var.bstrVal);
-			hr = PyList_Append(pyList, Py_BuildValue("s", pValue));
-			delete[] pValue;  
+			int* pBStrLen=0;
+			unsigned int sizeBuf = 0;
+			//unsigned int sizebuf2 = SysStringLen(var.bstrVal);
+			char *datan;
+			char *pValue = _com_util::ConvertBSTRToString(var.bstrVal);
+			pBStrLen=(int*)var.bstrVal;
+			pBStrLen--;
+			sizeBuf = (unsigned int)*pBStrLen/2;
+			datan = (char*) malloc(sizeBuf * sizeof(char));
+			for(unsigned int i=0;i<sizeBuf;i++){
+				unsigned int value = (unsigned int)*(pValue+i);
+				if(value<255 && value > 0){
+					*(datan + i) = *(pValue+i);
+					//printf("%c\n", *(pValue+i));
+					//printf("%u\n", value);
+				}else{
+					*(datan + i) = '#';
+				}
+			}
+			//printf ("\n%s\n", datan);
+			//printf("%u\n", sizeBuf);
+			//printf("%u\n", sizebuf2);
+			hr = PyList_Append(pyList, Py_BuildValue("z#", datan, sizeBuf));
+			delete[] pValue;
+			delete[] datan;
 			if (FAILED(hr)) {
 				printf("Failed to append the object item at the end of list list\n");
 				return pyList;
@@ -130,6 +152,13 @@ getDeviceList(PyObject *self, PyObject *args)
 	PyObject* pyList = NULL; 
 	
 	HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
+	
+	//backup; run it without multithreading.
+	if (!SUCCEEDED(hr))
+	{				
+		hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+	}
+	
 	if (SUCCEEDED(hr))
 	{
 		IEnumMoniker *pEnum;
@@ -141,6 +170,8 @@ getDeviceList(PyObject *self, PyObject *args)
 			pEnum->Release();
 		}
 		CoUninitialize();
+	} else {
+		PyErr_SetString(PyExc_TypeError, "Could not call CoInitializeEx");		
 	}
 
     return pyList;
