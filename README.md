@@ -6,18 +6,37 @@
 * Python 2.7.9 / Python 3.6.5
 * OpenCV 3.3.0
 
+## Tips Python Compiler Windows
+* Python >=3.5 			  --> Visual C++ >=14.X
+* Python >=3.3 and <=3.4  --> Visual C++ 10
+* Python >=2.6 and <= 3.2 --> Visual C++ 9
+* More information in [3]
+
+## Prepare Environment
+1. Install Python 2/3 64 bits
+2. Install Opencv >3.0
+3. On CMD: pip install --upgrade setuptools --> This upgrade the setupttols
+4. Microsoft Visual C++ 14.2 standalone: Build Tools for Visual Studio 2019 (x86, x64, ARM, ARM64)
+	*This is a standalone version of Visual C++ 14.2 compiler, you don't need to install Visual Studio 2019.
+    *Install Microsoft Build Tools for Visual Studio 2019.[2] To Download[4]
+    *In Build tools, install C++ build tools and ensure the latest versions of MSVCv142 - VS 2019 C++ x64/x86 build tools and Windows 10 SDK are checked.
+
+
 ## How to Run 
 1. Configure Visual Studio environment:
     * Visual Studio 2010 (VS10): SET VS90COMNTOOLS=%VS100COMNTOOLS%
     * Visual Studio 2012 (VS11): SET VS90COMNTOOLS=%VS110COMNTOOLS%
     * Visual Studio 2013 (VS12): SET VS90COMNTOOLS=%VS120COMNTOOLS%
     * Visual Studio 2015 (VS14): SET VS90COMNTOOLS=%VS140COMNTOOLS%
+	* Visual Studio 2019 (VS16): SET VS90COMNTOOLS=%VS160COMNTOOLS%
 
-    If you are using **Visual Studio 2015**, use the following command:
+    If you are using **Visual Studio 2019**, use the following command:
 
     ```
-    SET VS90COMNTOOLS=%VS140COMNTOOLS%
+    SET VS90COMNTOOLS=%VS160COMNTOOLS%
     ```
+	
+	Or, search x64 Native Tools Command Prompt for VS 2019 in your menu windows, and don't need use the SET variable before
 
 2. Add your Windows SDK lib path to **setup.py**:
 
@@ -26,7 +45,7 @@
 
     module_device = Extension('device',
                             sources = ['device.cpp'], 
-                            library_dirs=['G:\Program Files\Microsoft SDKs\Windows\v6.1\Lib']
+                            library_dirs=['C:\Program Files (x86)\Windows Kits\10\Lib']
                         )
 
     setup (name = 'WindowsDevices',
@@ -68,3 +87,6 @@
 
 [0]:https://en.wikipedia.org/wiki/Microsoft_Windows_SDK
 [1]:http://www.codepool.biz/multiple-camera-opencv-python-windows.html
+[2]:https://www.visualstudio.com/downloads/#build-tools-for-visual-studio-2019
+[3]:https://wiki.python.org/moin/WindowsCompilers
+[4]:https://visualstudio.microsoft.com/es/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16
